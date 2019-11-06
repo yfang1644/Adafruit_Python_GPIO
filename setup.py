@@ -1,27 +1,11 @@
 print('Adafruit GPIO Library')
 print('Works best with Python 2.7')
 print('THIS INSTALL SCRIPT MAY REQUIRE ROOT/ADMIN PERMISSIONS')
-print('Especially if you installed python for "all users" on Windows')
-print('\ntry the following in your systems terminal if ensurepip is not sufficient:')
-print('$ python -m ensurepip --upgrade')
-print('$ python -m pip install --upgrade pip setuptools')
 
-import sys
-try:
-    import pip
-    from setuptools import setup, find_packages
-except ImportError:
-    import ensurepip
-    ensurepip.version()
-    ensurepip.bootstrap()
-    from setuptools import setup, find_packages
+from distutils.core import setup
 
 # Define required packages.
 requires = ['adafruit-pureio']
-
-# Assume spidev is required on non-windows & non-mac platforms (i.e. linux).
-if sys.platform != 'win32' and sys.platform != 'darwin':
-    requires.append('spidev')
 
 setup(name              = 'Adafruit_GPIO',
       version           = '1.0.4',
@@ -32,4 +16,5 @@ setup(name              = 'Adafruit_GPIO',
       url               = 'https://github.com/adafruit/Adafruit_Python_GPIO/',
       install_requires  = requires,
       test_suite        = 'tests',
-      packages          = find_packages())
+      packages          = ['Adafruit_GPIO']
+     )
